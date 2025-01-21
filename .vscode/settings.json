@@ -1,0 +1,6 @@
+{
+  "files.associations": {
+    "jitterentropy-base-user.h": "c"
+  },
+  "makefile.configureOnOpen": true
+}
