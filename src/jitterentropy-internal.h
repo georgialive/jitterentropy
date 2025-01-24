@@ -41,7 +41,7 @@
 
 #ifndef _JITTERENTROPY_INTERNAL_H
 #define _JITTERENTROPY_INTERNAL_H
-/*we added ../ */
+
 #include "jitterentropy.h"
 
 #ifdef __cplusplus

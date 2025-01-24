@@ -2,23 +2,16 @@
 
 #include <stdio.h>                    
 #include <stdlib.h>                   // Standard library for memory management.
-#include "jitterentropy.h"            // Main header file for jitterentropy.
-#include "jitterentropy-noise.h"      // Noise-related entropy functions.
+#include "./jitterentropy.h"              // Main header file for jitterentropy.
+#include "./src/jitterentropy-noise.h"      // Noise-related entropy functions.
 
 #define OUTPUT_FILE "raw_entropy.bin" // File to save raw entropy.
 #define NUM_ENTRIES 1000000           // Number of raw entropy entries to collect.
 
 int main() {
-    uint64_t start = 0, end = 0;
-
-    jent_get_nstime(&start);
-    jent_get_nstime(&end);
-
-    printf("Timer resolution (delta): %llu\n", end - start);
-
 
     // Initialize entropy collector
-    struct rand_data *entropy_collector = jent_entropy_collector_alloc(100, 0); // OSR=1, no special flags
+    struct rand_data *entropy_collector = jent_entropy_collector_alloc(20, 0); // OSR=20, no special flags
     if (!entropy_collector) {
         fprintf(stderr, "Failed to allocate entropy collector.\n");
         return 1;
@@ -53,6 +46,16 @@ int main() {
             return 1;
         }
     }
+
+    uint64_t start, end, delta;
+
+    for (int i = 0; i < 10; i++) {
+        jent_get_nstime(&start);
+        jent_get_nstime(&end);
+        delta = end - start;
+        printf("Timer delta: %llu\n", delta);
+    }
+
 
     // Clean up
     fclose(output_file);

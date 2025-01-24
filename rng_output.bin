@@ -1,0 +1,1 @@
+./jitterentropy-rng <number of measurements> [--force-fips|--disable-memory-access|--disable-internal-timer|--force-internal-timer|--osr <OSR>|--max-mem <NUM>]
